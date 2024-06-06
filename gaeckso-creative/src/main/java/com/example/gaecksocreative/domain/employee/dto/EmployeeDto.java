@@ -2,8 +2,10 @@ package com.example.gaecksocreative.domain.employee.dto;
 
 import com.example.gaecksocreative.domain.employee.EmployeeEntity;
 import lombok.Builder;
+import lombok.Getter;
 
 @Builder
+@Getter
 public class EmployeeDto {
 
     private String name;

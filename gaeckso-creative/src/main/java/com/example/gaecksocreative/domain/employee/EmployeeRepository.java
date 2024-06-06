@@ -7,4 +7,6 @@ import java.util.Optional;
 
 @Repository
 public interface EmployeeRepository extends JpaRepository<EmployeeEntity, Long> {
+
+    Optional<EmployeeEntity> findByNameAndAgeAndSex(String name, int age, boolean sex);
 }

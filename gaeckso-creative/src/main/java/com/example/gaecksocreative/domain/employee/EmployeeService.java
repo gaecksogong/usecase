@@ -17,7 +17,10 @@ public class EmployeeService {
         return EmployeeDto.convertToDto(employee);
     }
 
-//    public Long getEmployeeId(EmployeeDto employee) {
-//
-//    }
+    public Long getEmployeeId(EmployeeDto employee) {
+        EmployeeEntity employeeEntity = employeeRepository.findByNameAndAgeAndSex(employee.getName(), employee.getAge(), employee.isSex())
+                .orElseThrow(() -> new RuntimeException("Member not found"));
+
+        return employeeEntity.getId();
+    }
 }
