@@ -1,26 +1,38 @@
 package com.example.gaecksocreative.domain.severance.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.example.gaecksocreative.domain.severance.dto.SeveranceResolutionDTO;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import java.util.Date;
 
-@Entity(name = "severanceResolution")
+@Entity
 @Builder
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "severanceResolution")
 public class SeveranceResolution {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
+    @Column
     private int severancePayId;
+    @Column
     private String description;
-    private int approvalStatus;
+    @Column
+    private String approvalStatus;
+    @Column
     private Date date;
+
+    public static SeveranceResolution convertToEntity(SeveranceResolutionDTO severanceResolutionDTO){
+        return SeveranceResolution.builder()
+                .id(severanceResolutionDTO.getId())
+                .severancePayId(severanceResolutionDTO.getSeverancePayId())
+                .description(severanceResolutionDTO.getDescription())
+                .approvalStatus(severanceResolutionDTO.getApprovalStatus())
+                .date(severanceResolutionDTO.getDate())
+                .build();
+    }
 }
