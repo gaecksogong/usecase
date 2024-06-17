@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:if="${id == null}">
+    <form action="/budget" method="get">
+        <label for="id">ID:</label><br>
+        <input type="text" id="id" name="id"><br>
+        <input type="submit" value="Login">
+    </form>
+</div>
+<div th:if="${id != null}">
+    <p th:text="'Name: ' + ${name}"></p>
+    <p th:text="'ID: ' + ${id}"></p>
+    <a href="/budgetRequest"><button>예산 편성 신청</button></a>
+    <a href="/budgetSearch"><button>편성 목록 조회</button></a>
+</div>
+</body>
+</html>
+

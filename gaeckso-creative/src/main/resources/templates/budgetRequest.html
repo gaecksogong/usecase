@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Budget Apply</title>
+</head>
+<body>
+<form action="/budgetRequest" method="post" th:object="${budget}">
+    <label for="name">예산명: </label><br>
+    <input type="text" id="name" th:field="*{name}" required><br>
+    <label for="description">예산내역: </label><br>
+    <input type="text" id="description" th:field="*{description}" required><br>
+    <label for="cost">예산금액: </label><br>
+    <input type="number" id="cost" th:field="*{cost}" required><br>
+    <label>담당자: </label><br>
+    <input type="text" required><br>
+    <input type="hidden" id="status" th:field="*{status}" th:value="false"><br>
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>

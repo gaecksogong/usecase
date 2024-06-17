@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Budget Search</title>
+</head>
+<body>
+<form action="#" th:action="@{/budgetSearch}" method="get">
+    <select name="searchType">
+        <option value="">선택</option>
+        <option value="managerName">담당자</option>
+        <option value="budgetName">예산명</option>
+    </select>
+    <input type="text" name="searchValue" placeholder="검색값 입력">
+    <input type="submit" value="검색">
+</form>
+<table>
+    <tr>
+        <th>담당자</th>
+        <th>예산금액</th>
+        <th>예산내역</th>
+        <th>예산명</th>
+        <th>신청상태</th>
+    </tr>
+    <tr th:each="budget : ${budgets}" th:if="${budgets != null and !#lists.isEmpty(budgets)}">
+        <td th:text="${budget.managerName}"></td>
+        <td th:text="${budget.cost}"></td>
+        <td th:text="${budget.description}"></td>
+        <td th:text="${budget.name}"></td>
+        <td th:text="${budget.status} ? '승인' : '대기'"></td>
+    </tr>
+    <tr th:unless="${budgets != null and !#lists.isEmpty(budgets)}">
+        <td colspan="5">데이터 없음</td>
+    </tr>
+</table>
+</body>
+</html>
