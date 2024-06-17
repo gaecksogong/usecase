@@ -2,13 +2,66 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>severanceResolution</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>퇴직금 결의 등록</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        form label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        form input, form textarea, form button {
+            width: calc(100% - 22px);
+            margin: 5px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        form button {
+            background-color: #5cb85c;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        form button:hover {
+            background-color: #4cae4c;
+        }
+    </style>
 </head>
 <body>
-<form action="/severanceResolution" method="post">
-    직원: <input type="text" name="severancePayId"> <br>
-    설명: <textarea name="description" cols="30" rows="10"></textarea> <br>
-    <input type="submit" value="등록">
+<h1>퇴직금 결의 등록</h1>
+<form action="/severanceResolution/" method="post">
+    <label for="employeeId">직원 ID:</label>
+    <input type="number" id="employeeId" name="employeeId" placeholder="직원번호 입력">
+
+    <label for="amount">금액:</label>
+    <input type="number" id="amount" name="amount" placeholder="퇴직금 입력">
+
+    <label for="date">날짜:</label>
+    <input type="date" id="date" name="date">
+
+    <label for="description">설명:</label>
+    <textarea id="description" name="description" cols="30" rows="10" placeholder="설명 입력"></textarea>
+
+    <button type="submit">등록</button>
 </form>
 </body>
 </html>

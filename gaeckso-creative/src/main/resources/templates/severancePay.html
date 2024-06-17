@@ -1,9 +1,97 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>severancePay</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Severance Pay</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        form label {
+            margin-right: 10px;
+        }
+        form input, form button {
+            margin: 5px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        form button {
+            background-color: #5cb85c;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        form button:hover {
+            background-color: #4cae4c;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        table thead {
+            background-color: #5cb85c;
+            color: #fff;
+        }
+        table th, table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        table tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
 <body>
+<h1>퇴직금 조회</h1>
+
+<form action="/severancePay/filter" method="get">
+    <label for="employeeId"> 직원번호:</label>
+    <input type="number" id="employeeId" name="employeeId" placeholder="Enter Employee ID">
+
+    <label for="startDate"> 시작일:</label>
+    <input type="date" id="startDate" name="startDate">
+
+    <label for="endDate"> 종료일:</label>
+    <input type="date" id="endDate" name="endDate">
+
+    <button type="submit">Filter</button>
+</form>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>직원번호</th>
+        <th>금액</th>
+        <th>날짜</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="severancePay : ${severancePayList}">
+        <td th:text="${severancePay.id}"></td>
+        <td th:text="${severancePay.employeeId}"></td>
+        <td th:text="${severancePay.amount}"></td>
+        <td th:text="${severancePay.date}"></td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

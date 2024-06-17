@@ -2,6 +2,7 @@ package com.example.gaecksocreative.domain.severance.dto;
 
 import com.example.gaecksocreative.domain.severance.entity.SeverancePay;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -15,9 +16,10 @@ public class SeverancePayDTO {
     private int id;
     private int employeeId;
     private int amount;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
 
-    public SeverancePayDTO convertToDto(SeverancePay severancePay) {
+    public static SeverancePayDTO convertToDto(SeverancePay severancePay) {
         return SeverancePayDTO.builder()
                 .id(severancePay.getId())
                 .employeeId(severancePay.getEmployeeId())
