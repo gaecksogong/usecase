@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New Asset</title>
+</head>
+<body>
+<h1>New Asset</h1>
+<form th:action="@{/assets}" method="post">
+    <p>Date: <input type="date" name="date" /></p>
+    <p>Cost: <input type="number" name="cost" /></p>
+    <p>Name: <input type="text" name="name" /></p>
+    <p>Loss: <input type="number" name="loss" /></p>
+    <p>Disposal: <input type="number" name="disposal" /></p>
+    <button type="submit">Save</button>
+</form>
+<a th:href="@{/assets}">Back to List</a>
+</body>
+</html>

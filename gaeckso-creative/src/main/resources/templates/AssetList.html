@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Asset List</title>
+</head>
+<body>
+<h1>Asset List</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Date</th>
+        <th>Cost</th>
+        <th>Name</th>
+        <th>Loss</th>
+        <th>Disposal</th>
+        <th>Details</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="asset : ${assets}">
+        <td th:text="${asset.id}"></td>
+        <td th:text="${asset.date}"></td>
+        <td th:text="${asset.cost}"></td>
+        <td th:text="${asset.name}"></td>
+        <td th:text="${asset.loss}"></td>
+        <td th:text="${asset.disposal}"></td>
+        <td><a th:href="@{/assets/{id}(id=${asset.id})}">Details</a></td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{/assets/new}">Add New Asset</a>
+</body>
+</html>

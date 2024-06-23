@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Asset Details</title>
+</head>
+<body>
+<h1>Asset Details</h1>
+<p>ID: <span th:text="${asset.id}"></span></p>
+<p>Date: <span th:text="${asset.date}"></span></p>
+<p>Cost: <span th:text="${asset.cost}"></span></p>
+<p>Name: <span th:text="${asset.name}"></span></p>
+<p>Loss: <span th:text="${asset.loss}"></span></p>
+<p>Disposal: <span th:text="${asset.disposal}"></span></p>
+<a th:href="@{/assets}">Back to List</a>
+</body>
+</html>
