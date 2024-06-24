@@ -57,23 +57,54 @@
         table tbody tr:nth-child(even) {
             background-color: #f2f2f2;
         }
+        #employee-info {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
     </style>
+    <script>
+        function fetchEmployeeInfo() {
+            const employeeId = document.getElementById('employeeId').value;
+            fetch(`/severanceResolution/employee/${employeeId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('직원 정보를 찾을 수 없습니다.');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const infoDiv = document.getElementById('employee-info');
+                    infoDiv.innerHTML = `<p><strong>이름:</strong> ${data.name}</p>
+                                         <p><strong>나이:</strong> ${data.age}</p>
+                                         <p><strong>성별:</strong> ${data.sex}</p>`;
+                })
+                .catch(error => {
+                    document.getElementById('employee-info').innerHTML = `<p>${error.message}</p>`;
+                });
+        }
+    </script>
 </head>
 <body>
 <h1>퇴직금 조회</h1>
 
 <form action="/severancePay/filter" method="get">
-    <label for="employeeId"> 직원번호:</label>
+    <label for="employeeId">직원번호:</label>
     <input type="number" id="employeeId" name="employeeId" placeholder="Enter Employee ID">
+    <button type="button" onclick="fetchEmployeeInfo()">직원 조회</button>
 
-    <label for="startDate"> 시작일:</label>
+    <label for="startDate">시작일:</label>
     <input type="date" id="startDate" name="startDate">
 
-    <label for="endDate"> 종료일:</label>
+    <label for="endDate">종료일:</label>
     <input type="date" id="endDate" name="endDate">
 
     <button type="submit">Filter</button>
 </form>
+
+<div id="employee-info"></div>
 
 <table>
     <thead>
